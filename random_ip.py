@@ -30,7 +30,7 @@ def get_random_address():
 	for key in addr.keys():
 		oktet = random.randrange(0,254)
 		addr[key] = oktet
-	if addr['d'] == 0:					# Если последний актет равен 0,
+	if addr['d'] == 0:					# Если последний октет равен 0,
 		get_random_address()			# функция вызывает себя рекурсивно.
 	return addr
 
@@ -40,4 +40,4 @@ if __name__ == '__main__':
 	address = GetAddress(random_addr['a'],random_addr['b'],random_addr['c'],random_addr['d'])
 	mask = GetAddress(int(random_mask[0:8],2),int(random_mask[8:16],2),int(random_mask[16:24],2),int(random_mask[24:32],2))
 
-	print('Адресс : {0}, Маска : {1}'.format (address,mask))
+	print('Адресс : {0}, Маска : {1}'.format(address,mask))
