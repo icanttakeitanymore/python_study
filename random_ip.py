@@ -3,6 +3,7 @@ import random
 
 class GetAddress:
     """Класс генерации экземпляра адреса и перезагрузки оператора вывода. Аргументы a,b,c,d - октеты адреса"""
+
     def __init__(self,a,b,c,d):
         self.a = a
         self.b = b
@@ -13,6 +14,7 @@ class GetAddress:
 
 def get_random_address():
     """Функция генерации адреса"""
+
     addr = {'a':0,'b':0,'c':0,'d':0}
     for key in addr.keys():
         oktet = random.randrange(0,254)
@@ -40,6 +42,7 @@ def get_random_mask(random_addr):
         cidr = random.randint(24,32)
         rand = '1'*cidr+'0'*(32-cidr)
         return {'a':255,'b':255,'c':int(rand[16:24],2),'d':int(rand[24:32],2)}
+
     # Global Networks. bugged
     cidr = random.randint(1,32)
     rand = '1'*cidr+'0'*(32-cidr)
@@ -49,9 +52,11 @@ def get_random_mask(random_addr):
 
 
 if __name__ == '__main__':
+
     # Получаем адрес.
     random_addr = get_random_address()
     address = GetAddress(random_addr['a'],random_addr['b'],random_addr['c'],random_addr['d'])
+
     # Получаем маску.
     random_mask = get_random_mask(random_addr)
     mask = GetAddress(random_mask['a'],random_mask['b'],random_mask['c'],random_mask['d'])
