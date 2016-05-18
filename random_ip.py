@@ -21,23 +21,30 @@ def get_random_address():
         get_random_address()              # функция вызывает себя рекурсивно.
     return addr
 
-def get_random_mask():
+
+def get_random_mask(random_addr):
     """Функция генерации маски"""
-    # Наиболее рандомный вариант.
-    cidr = random.randint(1,31)            # Вычисляем количество единиц в маске. к примеру cird = 24, маска 255.255.255.0
-    return '1'*cidr+'0'*(32-cidr)
 
-    # Не особо рандомный вариант. Но как ни странно более реалестичный.
+    # Private Networks
+    if random_addr['a'] == 127:
+        return {'a':255,'b':0,'c':0,'d':0}
+    if random_addr['a'] == 10:
+        cidr = random.randint(8,32)
+        rand = '1'*cidr+'0'*(32-cidr)
+        return {'a':255,'b':int(rand[8:16],2),'c':int(rand[16:24],2),'d':int(rand[24:32],2)}
+    if random_addr['a'] == 172 and random_addr['b'] >= 16 and random_addr['b'] < 32:
+        cidr = random.randint(12,16)
+        rand = '1'*cidr+'0'*(32-cidr)
+        return {'a':255,'b':int(rand[8:16],2),'c':int(rand[16:24],2),'d':int(rand[24:32],2)}
+    if random_addr['a'] == 192 and random_addr['b'] == 168:
+        cidr = random.randint(24,32)
+        rand = '1'*cidr+'0'*(32-cidr)
+        return {'a':255,'b':255,'c':int(rand[16:24],2),'d':int(rand[24:32],2)}
+    # Global Networks. bugged
+    cidr = random.randint(1,32)
+    rand = '1'*cidr+'0'*(32-cidr)
+    return {'a':int(rand[0:8],2),'b':int(rand[8:16],2),'c':int(rand[16:24],2),'d':int(rand[24:32],2)}
 
-    #mask0 = ''                            # Строка для нолей.
-    #mask1 = ''                            # Строка для единиц.
-    #mask = (bin(random.getrandbits(32))[2::])    # Получаем рандомное 32-битовое число в строку.
-    #for i in mask:
-        #if str(i) == '1':                 # Если chr в строке mask == 1
-            #mask1 = mask1 + str(1)        # пишем добавлем 1 к строке для единиц.
-        #else:                             # Иначе.
-            #mask0 = mask0 + str(0)        # Добавляем 0 в строу для нолей.
-    #return mask1+mask0                    # Возвращаем строку для единиц с присоединением нолей в конец.
 
 
 
@@ -46,9 +53,8 @@ if __name__ == '__main__':
     random_addr = get_random_address()
     address = GetAddress(random_addr['a'],random_addr['b'],random_addr['c'],random_addr['d'])
     # Получаем маску.
-    random_mask = get_random_mask()
-    mask = GetAddress(int(random_mask[0:8],2),int(random_mask[8:16],2),int(random_mask[16:24],2),int(random_mask[24:32],2))
-
+    random_mask = get_random_mask(random_addr)
+    mask = GetAddress(random_mask['a'],random_mask['b'],random_mask['c'],random_mask['d'])
 
 
     print('Адрес : {0}, Маска : {1}'.format(address,mask))
