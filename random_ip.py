@@ -51,4 +51,4 @@ if __name__ == '__main__':
 
 
 
-    print('Адресс : {0}, Маска : {1}'.format(address,mask))
+    print('Адрес : {0}, Маска : {1}'.format(address,mask))
