@@ -27,7 +27,7 @@ def get_random_mask(random_addr):
 
     # Private Networks
     if random_addr['a'] == 127:
-        return {'a':255,'b':0,'c':0,'d':0}
+        return {'a':255,'b':255,'c':255,'d':0}
     if random_addr['a'] == 10:
         cidr = random.randint(8,32)
         rand = '1'*cidr+'0'*(32-cidr)
