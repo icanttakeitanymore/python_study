@@ -13,10 +13,10 @@ class Oven:                # Печь - печет :)
     def bake(self):
         print('oven bakes')
 
-class PizzaShop:           # Пицерия 
+class PizzaShop:           # Пиццерия 
     def __init__(self):
         self.server = Server('Pat')     # Официант который возится с клиетом
-        self.chef = PizzaRobot('Bob')   # Повар который делает пицу
+        self.chef = PizzaRobot('Bob')   # Повар который делает пиццу
         self.oven = Oven()              # Печь которая печет :)
     def order(self,name):               # Сцена заказа
         customer = Customer(name)       # Берем имя клиента
@@ -26,7 +26,7 @@ class PizzaShop:           # Пицерия
         customer.pay(self.server)       # Клиент платит :)
 
 if __name__ == '__main__':
-    scene = PizzaShop()                 # Сцена - Пицерия :)
+    scene = PizzaShop()                 # Сцена - Пиццерия :)
     scene.order('Homer')
     print('...')
     scene.order('Shaggy')
