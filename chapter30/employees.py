@@ -24,7 +24,7 @@ class Server(Employee):             # Официант
 class PizzaRobot(Chef):             # Робот является Поваром
     def __init__(self,name):
         Chef.__init__(self,name)
-    def work(self):
+    def work(self):                 # Он готовит пиццу
         print(self.name, 'makes pizza')
         
 if __name__ == '__main__':
