@@ -17,7 +17,7 @@ class PizzaShop:           # Пицерия
     def __init__(self):
         self.server = Server('Pat')     # Официант который возится с клиетом
         self.chef = PizzaRobot('Bob')   # Повар который делает пицу
-        self.oven = Oven()
+        self.oven = Oven()              # Печь которая печет :)
     def order(self,name):               # Сцена заказа
         customer = Customer(name)       # Берем имя клиента
         customer.order(self.server)     # Клиент делает заказ у Pat
