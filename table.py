@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-'''module for make csv in python array'''
+'''module for convert csv in python array'''
 filename = 'table.test'
 class Table:
-    '''this class creates list of lines in csv format spreadsheats'''
+    '''this class creates list of lines from csv format spreadsheats'''
     def getFields(self,filename):
-        '''this method make list for Fields in exemplar as attributes'''
+        '''this method creates list for Fields in exemplar as attributes'''
         for i in str(open(filename).readline()).rstrip().split(','):
             self.__dict__[i] = []
     
     def getColumns(self,filename):
-        '''this method makes append columns to the exemplar attributes'''
+        '''this method append columns to instance attributes'''
         keys = list(sorted(self.__dict__.keys()))
         for i in range(len(self.__dict__.keys())):
             row = []
@@ -21,7 +21,7 @@ class Table:
                 self.__dict__[keys[i]].append(x.rstrip().split(',')[i]);
     
     def __getitem__(self, i):
-        '''output exemplar items'''
+        '''output instance items'''
         keys = list(sorted(self.__dict__.keys()))
         return self.__dict__[keys[i]]
 
