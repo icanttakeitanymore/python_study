@@ -18,7 +18,6 @@ except ImportError as e:
     os.sys.exit()
 
 class DbfTable:
-
     def __setattr__(self, attr,value):
         self.__dict__[attr] = value
 
