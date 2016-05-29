@@ -1,48 +1,24 @@
-#!/usr/bin/env python3
-import os,subprocess
-try:
-    import dependencemod, mysqlmod
-    import dbf
-    import simpledbf
-except ImportError as e:
-    if str(e) == "No module named 'dependencemod'":
-        print('Потерялся файл dependencemod.py')
-    if str(e) == "No module named 'mysqlmod'":
-        print('Потерялся файл mysqlmod.py')
-    if str(e) == "No module named 'dbf'":
-        if dependencemod.dbfcheck() == 0:
-            print('Нужно установить dbf модуль, pip3 install dbf')
-    os.sys.exit()
+#!/usr/bin/env python3.4
+import os
+import mysqlmod
+import dbf
+import simpledbf
 
-def checkconf():
-    '''Проверка конфигурации'''
-    try:
-        for i in open('install.chk').readlines():
-            if str(i).find('1') >= 0:
-                print('simpledbf установлен')
-                return 1
-            else:
-                dependencemod.install()
-    except FileNotFoundError:
-        open('install.chk','w').write('0')
-        checkconf()
-
-def csvconv(inpf,charset,outf):
+def csvconv(inpf, charset, outf):
     '''csv конвертация'''
     global tmpf
-    tmpf= ''
+    tmpf = ''
     if outf == 'mysql':
         tmpf = 'temp.csv'
         outf = tmpf
     dbf = simpledbf.Dbf5(inpf, codec=charset)
     dbf.to_csv('tmp.csv')     # Временный файл создается
     for i in open('tmp.csv', 'r', encoding=charset).readlines():
-        open(outf,'a').write(i)
+        open(outf, 'a').write(i)
     os.remove('tmp.csv')      # Временный файл удаляется
 
 if __name__ == '__main__':
     try:
-        checkconf()                    # Проверка установки и конфигурации
         arg1 = os.sys.argv[1]          # Первый аргумент коммандной строки
         if arg1.split('=')[0] == 'if':
             inpf = arg1.split('=')[1]  # Конвертируемый файл
@@ -56,53 +32,88 @@ if __name__ == '__main__':
 
         arg2 = os.sys.argv[3]          # Третий аргумент выходной файл
         if arg2.split('=')[0] == 'of':
-            if arg2.split('=')[1] == 'mysql': # Если of=mysql то файл загружается в mysql
+            # Если of=mysql то файл загружается в mysql
+            if arg2.split('=')[1] == 'mysql':
                 print('Загрузка файла в MySql')
-                argmysql1=os.sys.argv[4]
-                if argmysql1.split('=')[0] == 'user':
+                argmysql1 = os.sys.argv[4]
+                # user
+                if argmysql1.split('=')[0] == '--user':
                     user = argmysql1.split('=')[1]  # User mysql
+                argmysql1 = os.sys.argv[4]
+                if argmysql1.split(' ')[0] == '-u':
+                    user = argmysql1.split(' ')[1]  # User mysql
                 else:
-                    pass
-                argmysql2=os.sys.argv[5]
-                if argmysql2.split('=')[0] == 'password':
+                    user = 'root'
+                # password
+                argmysql2 = os.sys.argv[5]
+                if argmysql2.split('=')[0] == '--password':
                     password = argmysql2.split('=')[1]  # Password mysql
+                if argmysql2.split(' ')[0] == '-p':
+                    password = argmysql2.split(' ')[1]  # Password mysql
                 else:
-                    pass
-                argmysql3=os.sys.argv[6]
-                if argmysql3.split('=')[0] == 'host':
+                    password = None
+                # host
+                argmysql3 = os.sys.argv[6]
+                if argmysql3.split('=')[0] == '--host':
                     host = argmysql3.split('=')[1]  # Host mysql
                 else:
-                    pass
-                argmysql4=os.sys.argv[7]
-                if argmysql4.split('=')[0] == 'database':
+                    host = 'localhost'
+                # db
+                argmysql4 = os.sys.argv[7]
+                if argmysql4.split('=')[0] == '--database':
                     database = argmysql4.split('=')[1]  # Database mysql
+                if argmysql4.split(' ')[0] == '-d':
+                    database = argmysql4.split(' ')[1]  # Database mysql
                 else:
                     pass
-                argmysql5=os.sys.argv[8]
-                if argmysql5.split('=')[0] == 'sqltable':
+                argmysql5 = os.sys.argv[8]
+                if argmysql5.split('=')[0] == '--sqltable':
                     sqltable = argmysql5.split('=')[1]  # Database mysql
+                if argmysql5.split(' ')[0] == '-t':
+                    sqltable = argmysql5.split(' ')[1]  # Database mysql
                 else:
                     pass
-                csvconv(inpf,charset,outf='mysql')
+                csvconv(inpf, charset, outf='mysql')
                 sqlconnect = mysqlmod.MySqlTable()
-                sqlconnect.ConnectMethod(user,password,host,database, sqltable, inpf, tmpf)
-                os.remove(tmpf) 
+                sqlconnect.methodSqlJob(user, password,
+                                         host, database,
+                                         sqltable, inpf, tmpf)
+                os.remove(tmpf)
             else:
                 outf = arg2.split('=')[1]     # Иначе имя файла
-                csvconv(inpf,charset,outf)
+                csvconv(inpf, charset, outf)
 
     except IndexError:
         print("""
 Информация к mydbftool :
+    Утилита поддерживает типы C, N, F для DBase.
+
+    Tool usage :
+
+    if=<...>            : Input file
+    <Charset>           : Second argument is charset of database table
+    of=<...>            : Output text file in csv format or of=mysql for mysql inserting
+
+    -u --user=<...>     : Username
+    -p --password=<...> : Password
+    -h --host=<...>     : Database
+    -d --database=<...> : Database
+    -t --sqltable=<...> : Table for insert
+
     --info=<ИмяФайла.dbf> : Покажет кодировку и структуру файла.
     --help : Покажет это сообщение
+
 Возможны два варианта использования программы.
- 1) Выгрузка в csv файл. Необходимо указать файл на вход, чарсет DBase и имя csv файла.
+ 1) Выгрузка в csv файл.
+ Необходимо указать файл на вход, чарсет DBase и имя csv файла.
 
  Пример : ./dbf_converter.py if=<file.dbf> <charset> of=<file.csv>
 
- 2) Онлайн загрузка dbf в mysql, предполагает что mysql имеет кодировки utf8. 
-    Для просмотра кодировок выполните на sql сервере :mysql> SHOW variables LIKE '%character_set%';
-            
- Пример : ./dbf_converter.py if=<file.dbf> <charset> of=<mysql>  user=<...> password=<...>  host=<...> database=<...> table=<...> sqltable=<...>
+ 2) Онлайн загрузка dbf в mysql, предполагает что mysql имеет кодировки utf8.
+    Для просмотра кодировок выполните на sql сервере :
+    mysql> SHOW variables LIKE '%character_set%';
+
+ Пример : ./dbf_converter.py if=<file.dbf> <charset> of=<mysql>  \
+                             user=<...> password=<...>  host=<...> \
+                             database=<...> table=<...> sqltable=<...>
              """)

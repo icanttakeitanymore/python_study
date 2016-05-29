@@ -9,25 +9,26 @@ class Spam:
     printNumInstances = classmethod(printNumInstances)
     
     
-a = Spam()
-b = Spam()
 
-Spam.printNumInstances()
-a.printNumInstances()
+
+
 
 class Sub(Spam):
     def printNumInstances(cls):
-        print("extra ftuff...", cls)
+        print("It is class:", cls)
         Spam.printNumInstances()
     printNumInstances = classmethod(printNumInstances)
-    
-c = Sub()
-d = Sub()
+
+
 class Other(Sub):
-    pass
-Spam.printNumInstances()
-
-c.printNumInstances()
-
-z = Other()
-z.printNumInstances() 
+    def printNumInstances(cls):
+        print("It is class", cls)
+        Spam.printNumInstances()
+    printNumInstances = classmethod(printNumInstances)
+if __name__ == '__main__':
+    a = Spam()
+    a.printNumInstances()
+    b = Sub()
+    b.printNumInstances()
+    c = Other()
+    c.printNumInstances()
