@@ -66,6 +66,7 @@ if __name__ == '__main__':
                     database = argmysql4.split(' ')[1]  # Database mysql
                 else:
                     pass
+                # table
                 argmysql5 = os.sys.argv[8]
                 if argmysql5.split('=')[0] == '--sqltable':
                     sqltable = argmysql5.split('=')[1]  # Database mysql
@@ -94,11 +95,11 @@ if __name__ == '__main__':
     <Charset>           : Second argument is charset of database table
     of=<...>            : Output text file in csv format or of=mysql for mysql inserting
 
-    -u --user=<...>     : Username
-    -p --password=<...> : Password
-    -h --host=<...>     : Database
-    -d --database=<...> : Database
-    -t --sqltable=<...> : Table for insert
+    -u --user=<...>     : Mysql username
+    -p --password=<...> : Mysql password
+    -h --host=<...>     : Mysql host
+    -d --database=<...> : Mysql database
+    -t --sqltable=<...> : Mysql table for insert
 
     --info=<ИмяФайла.dbf> : Покажет кодировку и структуру файла.
     --help : Покажет это сообщение
@@ -114,6 +115,6 @@ if __name__ == '__main__':
     mysql> SHOW variables LIKE '%character_set%';
 
  Пример : ./dbf_converter.py if=<file.dbf> <charset> of=<mysql>  \
-                             user=<...> password=<...>  host=<...> \
-                             database=<...> table=<...> sqltable=<...>
+                             --user=<...> --password=<...>  --host=<...> \
+                             --database=<...> --sqltable=<...>
              """)

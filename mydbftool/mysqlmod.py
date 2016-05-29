@@ -104,7 +104,7 @@ class MySqlTable(DbfTable):
             print('Удаление {0}'.format(sqltable))
             cur.execute('drop table {0}'.format(sqltable))                      # Удаляем схему
 
-        cur.execute(self.create_table.methodSqlTableQuery(sqltable,inpf))  # Делаем запрос создающий схему
+        cur.execute(self.create_table.methodSqlTableQuery(sqltable, inpf))  # Делаем запрос создающий схему
 
         fromdbf = DbfTable()                                                    # Создаем экземпляр данных DBase
         __array = fromdbf.methodDbfInsertCreating(sqltable, inpf,tmpf)          # Кладем полученные данные в массив
