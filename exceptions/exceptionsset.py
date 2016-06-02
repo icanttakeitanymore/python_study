@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-class MetaException(Exception):pass
-
+class MetaException(Exception):
+    counter = 0
+    @classmethod
+    def __str__(cls):
+        cls.counter += 1
+        return  'Always look this message'
 
 class Exception1(MetaException):pass
 class Exception2(MetaException):pass
@@ -29,6 +33,9 @@ def func3():
 for func in (func0,func1,func2,func3):
     try:
         func()
-    except MetaException:
+    except MetaException as X:
         import sys
+        print(X)
         print('catch:', sys.exc_info())
+    finally:
+        print(MetaException.counter,'!')
