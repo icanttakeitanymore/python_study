@@ -1,0 +1,14 @@
+[Unit]
+Description=HTTP daemon for Python
+After=syslog.target
+[Service]
+Type=simple
+User=boris
+Group=boris
+WorkingDirectory=/home/boris/git
+ExecStart=/home/boris/git/http_server.py
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
