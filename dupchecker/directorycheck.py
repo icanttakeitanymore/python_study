@@ -2,10 +2,10 @@
 from checksum import create_checksum
 from dirobject import FullDirectoryListing
 
-def getting_directory(directoryx,create):
+def getting_directory(path,create):
     '''Получение словаря с дубликатами'''
     directory = FullDirectoryListing()
-    directory(directoryx)
+    directory(path)
     files = {}
     for file in directory.fullpath:
         if file.find('.md5') > 0:
