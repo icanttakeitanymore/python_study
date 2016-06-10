@@ -1,0 +1,51 @@
+------------------------------
+Дубликаты с хешем 4968dda817d32270f5dfece1599710cc  в количестве  2
+0 ). /home/boris/Загрузки/[evrl.to-t380855]Игра престолов - Game of Thrones (6 сезон- 1-5 серии из 10) (2016) HDTVRip 720р - Amedia.torrent
+1 ). /home/boris/Загрузки/evrl_to-t380855_Igra_prestolov_-_Game_of_Thrones_6_sezon-_1-5_serii_iz_10__2016_HDTVRip_720r_-_Amedia_torrent.torrent
+------------------------------
+------------------------------
+Дубликаты с хешем 3edf1c799f4a2508625a57c857b9a741  в количестве  2
+0 ). /home/boris/Загрузки/Kate-plugins-0.2.3 (1).tar.gz
+1 ). /home/boris/Загрузки/Kate-plugins-0.2.3.tar.gz
+------------------------------
+------------------------------
+Дубликаты с хешем 62c751c82e6017037e2181f9fe17053c  в количестве  2
+0 ). /home/boris/Загрузки/dbfpy-2.3.1.tar.gz
+1 ). /home/boris/Загрузки/dbfpy-2.3.1 (1).tar.gz
+------------------------------
+------------------------------
+Дубликаты с хешем 86234450b9545f6490160b59416965d7  в количестве  2
+0 ). /home/boris/Загрузки/archlinux-2016.05.01-dual.iso
+1 ). /home/boris/Загрузки/archlinux-2016.05.01-dual (1).iso
+------------------------------
+------------------------------
+Дубликаты с хешем c1271979827cc8ce5ab38fea67d7b3b9  в количестве  2
+0 ). /home/boris/Загрузки/Req_PFR_0416 (1).rar
+1 ). /home/boris/Загрузки/Req_PFR_0416.rar
+------------------------------
+------------------------------
+Дубликаты с хешем f828ce8624aef92bee2f5f5e94e2515c  в количестве  2
+0 ). /home/boris/Загрузки/notinods (1).csv
+1 ). /home/boris/Загрузки/notinods.csv
+------------------------------
+------------------------------
+Дубликаты с хешем e9cf3adeca652e51cbdd766de87a2e80  в количестве  2
+0 ). /home/boris/Загрузки/[evrl.to-t380861]Игра престолов - Game of Thrones [06x01-07 из 10] (2016) HDTV 1080p - Amedia.torrent
+1 ). /home/boris/Загрузки/evrl_to-t380861_Igra_prestolov_-_Game_of_Thrones_06x01-07_iz_10__2016_HDTV_1080p_-_Amedia_torrent.torrent
+------------------------------
+------------------------------
+Дубликаты с хешем ccfd25371e3474b029f47babcc224376  в количестве  2
+0 ). /home/boris/Загрузки/kate-data_4.14.3-0ubuntu4_all/share/kde4/apps/kate/plugins/pate/kate/document/__init__.py
+1 ). /home/boris/Загрузки/kate-data_4.14.3-0ubuntu4_all/share/kde4/apps/kate/plugins/pate/kate/view/__init__.py
+------------------------------
+------------------------------
+Дубликаты с хешем 2cfa8c3704a4c81feb8a25a2ad5a299e  в количестве  2
+0 ). /home/boris/Загрузки/VSToolsForPython_ENU (1).exe
+1 ). /home/boris/Загрузки/VSToolsForPython_ENU.exe
+------------------------------
+------------------------------
+Дубликаты с хешем d41d8cd98f00b204e9800998ecf8427e  в количестве  3
+0 ). /home/boris/Загрузки/kate-data_4.14.3-0ubuntu4_all/share/kde4/apps/kate/pate/python_utils/python_checkers/__init__.py
+1 ). /home/boris/Загрузки/kate-data_4.14.3-0ubuntu4_all/lib/python2.7/dist-packages/PyKate4/__init__.py
+2 ). /home/boris/Загрузки/kate-data_4.14.3-0ubuntu4_all/share/kde4/apps/kate/pate/libkatepate/__init__.py
+------------------------------
